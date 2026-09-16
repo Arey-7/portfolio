@@ -54,7 +54,7 @@ The payload is bidirectional and asymmetric: Kolibri content and apt packages (v
 
 ## What broke, and what it taught
 
-- **A race condition in the payment flow.** The MikroTik IP binding has to be created *before* the database commit, not after. Get the order wrong and there's a window where the system believes a student has paid but the network hasn't been told. Operation ordering across two systems that don't share a transaction is a correctness concern, not a style one.
+- **A dual-write race in the payment flow — still open.** The router binding and the payment record live in two systems that share no transaction, so a crash between the two writes leaves one of them wrong. The current ordering writes the binding first, which fails in the worse direction: an orphan binding grants network access that no database record knows about, and the reclamation thread can only expire sessions it can see. The fix is to commit the record first, make the binding call idempotent, and let a reconciler converge the router's actual state onto the database's desired state. Listed here as a known issue rather than a solved one.
 - **`ProxyFix` silently misconfigured.** Werkzeug 2.x changed the parameter — `x_for=1`, not `x_real_ip=1`. The symptom was the portal seeing the proxy's IP instead of the client's, which quietly broke per-device binding. Proxy header configuration has to be verified against the library version in front of you, not against the last tutorial you read.
 - **Timestamps.** Store UTC, display through an East Africa Time filter. Anything else produces records that disagree with each other the first time you look at them from somewhere else.
 
