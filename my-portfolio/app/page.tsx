@@ -57,7 +57,7 @@ export default async function Home() {
       </Section>
 
       <Section>
-        <h2 className="font-display text-h2 text-ink">Work</h2>
+        <h2 data-reveal className="font-display text-h2 text-ink">Work</h2>
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard
@@ -80,10 +80,10 @@ export default async function Home() {
       </Section>
 
       <Section>
-        <h2 className="font-display text-h2 text-ink">Stack</h2>
+        <h2 data-reveal className="font-display text-h2 text-ink">Stack</h2>
         <dl className="mt-10 grid gap-6 sm:grid-cols-2">
           {SKILLS.map(({ group, items }) => (
-            <div key={group}>
+            <div key={group} data-reveal>
               <dt className="font-mono text-label uppercase text-amber">
                 {group}
               </dt>

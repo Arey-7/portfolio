@@ -21,9 +21,10 @@ export default async function WorkPage() {
         </p>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <ProjectCard
               key={project.slug}
+              className={i === 0 ? "lg:col-span-2" : ""}
               href={`/work/${project.slug}`}
               title={project.title}
               summary={project.summary}

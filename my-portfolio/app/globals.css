@@ -57,6 +57,31 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Scroll reveal — the design doc's spec: opacity 0->1, translateY 14px->0.
+   Driven by the scroll timeline rather than JavaScript, so it costs no bundle
+   and no layout shift. Browsers without view() support simply show the content,
+   which is the correct fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal 600ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Milestone 6: every animation must respect this. */
 @media (prefers-reduced-motion: reduce) {
   *,
