@@ -66,16 +66,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Link href="/contact">Contact</Link>
         </nav>
         {children}
-        <footer className="mx-auto flex w-full max-w-shell gap-6 border-t border-line px-5 py-10 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
+        <footer className="mx-auto flex w-full max-w-shell flex-wrap gap-6 border-t border-line px-5 py-10 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
+          <a
+            href="mailto:aaronmulandi@gmail.com"
+            className="transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+          >
+            Email
+          </a>
           <a
             href="https://github.com/Arey-7"
             target="_blank"
             rel="noopener noreferrer"
+            className="transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
           >
             GitHub
           </a>
-          <Link href="/contact">Contact</Link>
-          {/* TODO: LinkedIn and résumé links — Milestone 7 */}
+          <a
+            href="https://linkedin.com/in/aaron-mulandi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+          >
+            LinkedIn
+          </a>
         </footer>
       </body>
     </html>
