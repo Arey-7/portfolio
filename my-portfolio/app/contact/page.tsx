@@ -36,14 +36,14 @@ export default async function ContactPage() {
 
   return (
     <main className="flex-1">
-      <Section prose>
+      <Section>
         <h1 className="font-display text-h2 text-ink">Contact</h1>
 
-        <div className="mt-10">
+        <div className="mt-10 max-w-prose">
           <Markdown>{body}</Markdown>
         </div>
 
-        <dl className="mt-16 flex flex-col border-t border-line">
+        <dl className="mt-16 flex max-w-prose flex-col border-t border-line">
           {CHANNELS.map(({ label, value, href, external }) => (
             <div
               key={label}

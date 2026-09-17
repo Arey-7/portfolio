@@ -41,7 +41,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
 
   return (
     <main className="flex-1">
-      <Section prose>
+      <Section>
         <p className="flex flex-wrap items-center gap-2 font-mono text-label uppercase">
           <span className="text-amber">
             {STATUS_LABELS[project.status] ?? project.status}
@@ -53,7 +53,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
         </p>
 
         <h1 className="mt-4 font-display text-h2 text-ink">{project.title}</h1>
-        <p className="mt-6 text-body text-muted">{project.summary}</p>
+        <p className="mt-6 max-w-prose text-body text-muted">{project.summary}</p>
 
         {project.stack.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
@@ -110,7 +110,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
             })()
           : null}
 
-        <div className="mt-16">
+        <div className="mt-16 max-w-prose">
           <Markdown>{project.body}</Markdown>
         </div>
 

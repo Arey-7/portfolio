@@ -6,7 +6,7 @@ export const metadata = { title: "Not found" };
 export default function NotFound() {
   return (
     <main className="flex-1">
-      <Section prose>
+      <Section>
         <p className="font-mono text-label uppercase text-amber">Error 404</p>
         <h1 className="mt-4 font-display text-h2 text-ink">
           This page doesn&rsquo;t exist

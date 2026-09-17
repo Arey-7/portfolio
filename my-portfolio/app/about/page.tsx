@@ -11,9 +11,9 @@ export default async function AboutPage() {
 
   return (
     <main className="flex-1">
-      <Section prose>
+      <Section>
         <h1 className="font-display text-h2 text-ink">About</h1>
-        <div className="mt-10">
+        <div className="mt-10 max-w-prose">
           <Markdown>{body}</Markdown>
         </div>
       </Section>
