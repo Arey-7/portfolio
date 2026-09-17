@@ -1,9 +1,13 @@
-export const metadata = { title: "Contact"};
+import Section from "../components/section";
+
+export const metadata = { title: "Contact" };
 
 export default function ContactPage() {
-    return (
-        <main className="mx-auto w-full max-w-3xl px-6 py-24">
-            <h1 className="text-3xl font-semibold tracking-tight">Contact</h1>
-        </main>
-    );
+  return (
+    <main className="flex-1">
+      <Section prose>
+        <h1 className="font-display text-h2 text-ink">Contact</h1>
+      </Section>
+    </main>
+  );
 }

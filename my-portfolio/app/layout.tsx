@@ -1,16 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  IBM_Plex_Sans,
+  IBM_Plex_Sans_Condensed,
+  IBM_Plex_Mono,
+} from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexCondensed = IBM_Plex_Sans_Condensed({
+  variable: "--font-plex-condensed",
   subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 const title = "Ar3y — Aaron Mulandi, Software Engineer";
@@ -41,17 +56,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="mx-auto flex w-full max-w-3xl gap-6 px-6 py-6 text-sm">
+        <nav className="mx-auto flex w-full max-w-shell gap-6 px-5 py-6 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
           <Link href="/">Home</Link>
           <Link href="/work/eduaccess">Work</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </nav>
         {children}
-        <footer className="mx-auto flex w-full max-w-3xl gap-6 px-6 py-12 text-sm">
+        <footer className="mx-auto flex w-full max-w-shell gap-6 border-t border-line px-5 py-10 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
           <a
             href="https://github.com/Arey-7"
             target="_blank"

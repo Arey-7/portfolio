@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Palette — nine values, no more. Deep navy ground, signal amber. */
+  --color-ground: #0e1620;
+  --color-panel: #152131;
+  --color-panel2: #1b2a3c;
+  --color-line: #26374c;
+  --color-ink: #e9eef4;
+  --color-muted: #8296ac;
+  --color-amber: #f2a93b;
+  --color-link: #4fd1c5;
+  --color-alert: #e4685d;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Families — the variables are set by next/font in layout.tsx */
+  --font-display: var(--font-plex-condensed), sans-serif;
+  --font-sans: var(--font-plex-sans), sans-serif;
+  --font-mono: var(--font-plex-mono), monospace;
+
+  /* Type scale — five steps, no more */
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.16em;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-h3: clamp(1.19rem, 2.4vw, 1.56rem);
+  --text-h3--line-height: 1.2;
+
+  --text-h2: clamp(1.63rem, 3.4vw, 2.38rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-display: clamp(2.38rem, 6.4vw, 4.63rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.02em;
+
+  /* Measures — content shell and prose measure */
+  --container-shell: 1180px;
+  --container-prose: 66ch;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Milestone 6: every animation must respect this. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
