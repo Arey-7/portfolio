@@ -13,6 +13,8 @@ export type Project = {
   metrics: { value: string; label: string }[];
   repo?: string;
   demo?: string;
+  /** Key into the diagram registry on the project page. */
+  diagram?: string;
   body: string;
 };
 
@@ -75,6 +77,7 @@ export async function getProjects(): Promise<Project[]> {
             return { value: value.trim(), label: rest.join("|").trim() };
           })
           .filter((m) => m.value && m.label),
+        diagram: str(data.diagram) || undefined,
         repo: str(data.repo) || undefined,
         demo: str(data.demo) || undefined,
         body,

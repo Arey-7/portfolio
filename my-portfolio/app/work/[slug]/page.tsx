@@ -3,7 +3,13 @@ import { notFound } from "next/navigation";
 import Section from "../../components/section";
 import Chip from "../../components/chip";
 import Markdown from "../../components/markdown";
+import EduAccessDiagram from "../../components/diagrams/eduaccess";
 import { getProject, getProjects } from "../../../lib/projects";
+
+/** A project declares its diagram in frontmatter; the page looks it up here. */
+const DIAGRAMS: Record<string, () => React.ReactElement> = {
+  eduaccess: EduAccessDiagram,
+};
 
 const STATUS_LABELS: Record<string, string> = {
   "in-progress": "In development",
@@ -96,6 +102,13 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
             )}
           </p>
         )}
+
+        {project.diagram && DIAGRAMS[project.diagram]
+          ? (() => {
+              const Diagram = DIAGRAMS[project.diagram];
+              return <Diagram />;
+            })()
+          : null}
 
         <div className="mt-16">
           <Markdown>{project.body}</Markdown>

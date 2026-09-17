@@ -4,6 +4,7 @@ status: in-progress
 year: 2026
 summary: An offline-first learning network that puts a full Khan Academy library inside a community with no reliable internet, and lets students pay in mobile-money increments.
 stack: [Flask, Kolibri, MikroTik RouterOS, M-Pesa Daraja, Raspberry Pi]
+diagram: eduaccess
 ---
 
 ## The problem
