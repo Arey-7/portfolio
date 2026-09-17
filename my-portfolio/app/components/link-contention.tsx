@@ -101,7 +101,7 @@ export default function LinkContention() {
           type="button"
           onClick={() => setIsShaped((v) => !v)}
           aria-pressed={isShaped}
-          className="min-h-11 rounded-full border border-line px-4 font-mono text-label uppercase text-ink transition-colors duration-180 hover:border-amber hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+          className="min-h-11 rounded-full border border-muted px-4 font-mono text-label uppercase text-ink transition-colors duration-180 hover:border-amber hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
         >
           {isShaped ? "Fair queueing: on" : "Fair queueing: off"}
         </button>

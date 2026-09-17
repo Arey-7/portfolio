@@ -79,7 +79,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
                 href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber"
+                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
               >
                 Repository
               </a>
@@ -89,7 +89,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber"
+                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
               >
                 Live demo
               </a>
@@ -108,7 +108,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
           {previous ? (
             <Link
               href={`/work/${previous.slug}`}
-              className="text-muted transition-colors duration-180 hover:text-amber"
+              className="inline-flex min-h-11 items-center text-muted transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
             >
               ← {previous.title}
             </Link>
@@ -118,7 +118,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
           {next && (
             <Link
               href={`/work/${next.slug}`}
-              className="text-right text-muted transition-colors duration-180 hover:text-amber"
+              className="inline-flex min-h-11 items-center text-right text-muted transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
             >
               {next.title} →
             </Link>

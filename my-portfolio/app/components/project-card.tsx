@@ -27,7 +27,7 @@ export default function ProjectCard({
   stack = [],
 }: ProjectCardProps) {
   const className =
-    "group block rounded-lg border border-line bg-panel p-4 sm:p-6";
+    "group block rounded-lg border border-muted bg-panel p-4 sm:p-6";
   const interactive =
     " transition-colors duration-180 hover:border-amber hover:bg-panel2 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
 
