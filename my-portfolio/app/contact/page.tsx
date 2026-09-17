@@ -6,7 +6,7 @@ import { getPage } from "../../lib/projects";
 export const metadata = {
   title: "Contact",
   description:
-    "Get in touch with Aaron Mulandi — email, LinkedIn and GitHub. Based in New Jersey, authorized to work in the US.",
+   "Get in touch with Aaron Mulandi — email, LinkedIn and GitHub. Based in New Jersey, authorized to work in the US.",
 };
 
 const CHANNELS = [
@@ -39,11 +39,11 @@ export default async function ContactPage() {
       <Section>
         <h1 className="font-display text-h2 text-ink">Contact</h1>
 
-        <div className="mt-10 max-w-prose">
+        <div className="mt-10">
           <Markdown>{body}</Markdown>
         </div>
 
-        <dl className="mt-16 flex max-w-prose flex-col border-t border-line">
+        <dl className="mt-16 flex flex-col border-t border-line">
           {CHANNELS.map(({ label, value, href, external }) => (
             <div
               key={label}

@@ -13,7 +13,7 @@ export default async function AboutPage() {
     <main className="flex-1">
       <Section>
         <h1 className="font-display text-h2 text-ink">About</h1>
-        <div className="mt-10 max-w-prose">
+        <div className="mt-10">
           <Markdown>{body}</Markdown>
         </div>
       </Section>

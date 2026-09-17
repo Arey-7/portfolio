@@ -17,7 +17,7 @@ type ProjectCardProps = {
 };
 
 const STATUS_LABELS: Record<string, string> = {
-  "in-progress": "In development",
+ "in-progress": "In development",
   live: "Live",
   shipped: "Shipped",
 };
@@ -34,9 +34,9 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   const className =
-    "group relative block overflow-hidden rounded-lg border border-muted bg-panel p-4 sm:p-6";
+   "group relative block overflow-hidden rounded-lg border border-muted bg-panel p-4 sm:p-6";
   const interactive =
-    " transition-[transform,background-color,border-color] duration-180 hover:-translate-y-0.5 hover:border-amber hover:bg-panel2 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
+   " transition-[transform,background-color,border-color] duration-180 hover:-translate-y-0.5 hover:border-amber hover:bg-panel2 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
 
   const inner = (
     <>
@@ -67,7 +67,7 @@ export default function ProjectCard({
         {title}
       </Heading>
 
-      <p className="mt-4 max-w-prose text-body text-muted">{summary}</p>
+      <p className="mt-4 text-body text-muted">{summary}</p>
 
       {stack.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-2">

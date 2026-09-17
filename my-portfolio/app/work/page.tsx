@@ -5,7 +5,7 @@ import { getProjects } from "../../lib/projects";
 export const metadata = {
   title: "Work",
   description:
-    "Projects by Aaron Mulandi — offline-first systems, edge infrastructure, and the backends behind them.",
+   "Projects by Aaron Mulandi — offline-first systems, edge infrastructure, and the backends behind them.",
 };
 
 export default async function WorkPage() {
@@ -15,7 +15,7 @@ export default async function WorkPage() {
     <main className="flex-1">
       <Section>
         <h1 className="font-display text-h2 text-ink">Work</h1>
-        <p className="mt-6 max-w-prose text-body text-muted">
+        <p className="mt-6 text-body text-muted">
           Two systems and an honest gap. Each page says what works today and
           what doesn&rsquo;t.
         </p>

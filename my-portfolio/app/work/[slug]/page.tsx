@@ -12,7 +12,7 @@ const DIAGRAMS: Record<string, () => React.ReactElement> = {
 };
 
 const STATUS_LABELS: Record<string, string> = {
-  "in-progress": "In development",
+ "in-progress": "In development",
   live: "Live",
   shipped: "Shipped",
 };
@@ -53,7 +53,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
         </p>
 
         <h1 className="mt-4 font-display text-h2 text-ink">{project.title}</h1>
-        <p className="mt-6 max-w-prose text-body text-muted">{project.summary}</p>
+        <p className="mt-6 text-body text-muted">{project.summary}</p>
 
         {project.stack.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
@@ -110,7 +110,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
             })()
           : null}
 
-        <div className="mt-16 max-w-prose">
+        <div className="mt-16">
           <Markdown>{project.body}</Markdown>
         </div>
 

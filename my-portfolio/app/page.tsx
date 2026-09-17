@@ -26,7 +26,7 @@ export default async function Home() {
         <h1 className="mt-4 font-display text-display text-ink">
           Aaron Mulandi
         </h1>
-        <p className="mt-6 max-w-prose text-body text-muted">
+        <p className="mt-6 text-body text-muted">
           I build systems that hold up when the infrastructure doesn&rsquo;t —
           offline-first platforms, edge deployments, and the backends behind
           them.
