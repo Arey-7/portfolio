@@ -8,6 +8,11 @@ export type Project = {
   year: string;
   summary: string;
   stack: string[];
+  /** Optional "value|label" pairs for the metrics row. Omitted when there is
+   *  nothing measured to show — an empty row beats an invented number. */
+  metrics: { value: string; label: string }[];
+  repo?: string;
+  demo?: string;
   body: string;
 };
 
@@ -57,15 +62,24 @@ export async function getProjects(): Promise<Project[]> {
       const { data, body } = parseFrontmatter(raw);
       if (!data.status) return null;
 
-      return {
+      const project: Project = {
         slug: file.replace(/\.md$/, ""),
         title: str(data.title, file),
         status: str(data.status),
         year: str(data.year),
         summary: str(data.summary),
         stack: Array.isArray(data.stack) ? data.stack : [],
+        metrics: (Array.isArray(data.metrics) ? data.metrics : [])
+          .map((m) => {
+            const [value, ...rest] = m.split("|");
+            return { value: value.trim(), label: rest.join("|").trim() };
+          })
+          .filter((m) => m.value && m.label),
+        repo: str(data.repo) || undefined,
+        demo: str(data.demo) || undefined,
         body,
-      } satisfies Project;
+      };
+      return project;
     }),
   );
 
@@ -76,4 +90,14 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getProject(slug: string): Promise<Project | undefined> {
   return (await getProjects()).find((p) => p.slug === slug);
+}
+
+/** Body text of a content file that isn't a project — the About page. */
+export async function getPage(slug: string): Promise<string | null> {
+  try {
+    const raw = await readFile(path.join(CONTENT_DIR, `${slug}.md`), "utf8");
+    return parseFrontmatter(raw).body;
+  } catch {
+    return null;
+  }
 }
