@@ -2,7 +2,8 @@ import Link from "next/link";
 import Chip from "./chip";
 
 type ProjectCardProps = {
-  href: string;
+  /** Omit for a placeholder card — it renders as a plain block, not a link. */
+  href?: string;
   title: string;
   summary: string;
   /** Real status, not decoration — "in-progress", "live", "shipped". */
@@ -25,11 +26,13 @@ export default function ProjectCard({
   year,
   stack = [],
 }: ProjectCardProps) {
-  return (
-    <Link
-      href={href}
-      className="group block rounded-lg border border-line bg-panel p-4 transition-colors hover:bg-panel2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber sm:p-6"
-    >
+  const className =
+    "group block rounded-lg border border-line bg-panel p-4 sm:p-6";
+  const interactive =
+    " transition-colors duration-180 hover:border-amber hover:bg-panel2 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
+
+  const inner = (
+    <>
       <div className="flex items-center gap-2 font-mono text-label uppercase">
         <span className="text-amber">
           {STATUS_LABELS[status] ?? status}
@@ -53,6 +56,14 @@ export default function ProjectCard({
           ))}
         </div>
       )}
+    </>
+  );
+
+  return href ? (
+    <Link href={href} className={className + interactive}>
+      {inner}
     </Link>
+  ) : (
+    <div className={className}>{inner}</div>
   );
 }
