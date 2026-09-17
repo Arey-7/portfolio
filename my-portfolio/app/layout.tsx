@@ -67,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Home
           </Link>
           <Link
-            href="/work/eduaccess"
+            href="/work"
             className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
           >
             Work

@@ -10,6 +10,9 @@ type ProjectCardProps = {
   status: string;
   year: string | number;
   stack?: string[];
+  /** Heading level is contextual, not a property of the card: under an <h2>
+   *  section it must be h3; as the top-level list on /work it must be h2. */
+  headingLevel?: 2 | 3;
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -25,7 +28,9 @@ export default function ProjectCard({
   status,
   year,
   stack = [],
+  headingLevel = 3,
 }: ProjectCardProps) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const className =
     "group block rounded-lg border border-muted bg-panel p-4 sm:p-6";
   const interactive =
@@ -43,9 +48,9 @@ export default function ProjectCard({
         <span className="text-muted">{year}</span>
       </div>
 
-      <h3 className="mt-2 font-display text-h3 text-ink group-hover:text-amber">
+      <Heading className="mt-2 font-display text-h3 text-ink group-hover:text-amber">
         {title}
-      </h3>
+      </Heading>
 
       <p className="mt-4 max-w-prose text-body text-muted">{summary}</p>
 
