@@ -41,6 +41,16 @@
   --container-prose: 66ch;
 }
 
+/* Tailwind's preflight resets heading weight to inherit; the design system
+   wants the condensed display face at 700. Declared once rather than as a
+   utility repeated on every heading. */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+}
+
 body {
   background: var(--color-ground);
   color: var(--color-ink);
