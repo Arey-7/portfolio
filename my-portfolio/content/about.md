@@ -20,5 +20,7 @@ and lets students pay for access in mobile-money increments. It took 2nd
 runner-up at the Engineers Board of Kenya's Engineering Recognition and
 Excellence Awards in 2026, and I'm now developing it into a standalone product.
 
-I'm currently building an invoicing system, and looking for backend and systems
-work where the hard part is correctness under failure rather than scale.
+I'm currently extending a quote calculator I built for a printing company into
+something that files documents properly. I'm looking for systems work, because
+systems are how I think about problems in the first place: what the parts are,
+how each one fails, and what happens to everything else when one of them does.
