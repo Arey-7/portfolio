@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL as siteUrl } from "../lib/site";
 
 const plexSans = IBM_Plex_Sans({
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             LinkedIn
           </a>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
