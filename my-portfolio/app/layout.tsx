@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { SITE_URL as siteUrl } from "../lib/site";
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
@@ -32,8 +33,6 @@ const title = "Ar3y — Aaron Mulandi, Software Engineer";
 const description =
   "Aaron Mulandi builds software for places the network doesn't reach — offline-first platforms, edge infrastructure, and the systems that keep them running.";
 
-// Swap to https://aaronmulandi.com once the domain is pointed at Vercel.
-const siteUrl = "https://my-portfolio-delta-sable-23.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

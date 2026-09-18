@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getProjects } from "../lib/projects";
-
-const BASE = "https://my-portfolio-delta-sable-23.vercel.app";
+import { SITE_URL as BASE } from "../lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects();
