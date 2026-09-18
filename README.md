@@ -1,7 +1,7 @@
 # Portfolio — aaronmulandi
 
 Personal portfolio and engineering write-ups.
-Live at **https://my-portfolio-delta-sable-23.vercel.app**
+Live at **https://ar3y.tech**
 
 ## What this is
 

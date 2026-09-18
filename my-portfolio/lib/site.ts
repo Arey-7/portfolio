@@ -7,5 +7,5 @@
  */
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://my-portfolio-delta-sable-23.vercel.app"
+  "https://ar3y.tech"
 ).replace(/\/$/, "");
