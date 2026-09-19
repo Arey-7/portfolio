@@ -3,6 +3,7 @@ import ProjectCard from "../components/project-card";
 import { getProjects } from "../../lib/projects";
 
 export const metadata = {
+  alternates: { canonical: "/work" },
   title: "Work",
   description:
    "Projects by Aaron Mulandi — offline-first systems, edge infrastructure, and the backends behind them.",

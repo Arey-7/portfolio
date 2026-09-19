@@ -26,7 +26,11 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) return {};
-  return { title: project.title, description: project.summary };
+  return {
+    title: project.title,
+    description: project.summary,
+    alternates: { canonical: `/work/${slug}` },
+  };
 }
 
 export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {

@@ -3,7 +3,12 @@ import Section from "../components/section";
 import Markdown from "../components/markdown";
 import { getPage } from "../../lib/projects";
 
-export const metadata = { title: "About" };
+export const metadata = {
+  title: "About",
+  description:
+    "Aaron Mulandi — final-year Electronic and Computer Engineering student at JKUAT, based in New Jersey, building offline-first systems for unreliable infrastructure.",
+  alternates: { canonical: "/about" },
+};
 
 export default async function AboutPage() {
   const body = await getPage("about");

@@ -35,6 +35,29 @@ const description =
   "Aaron Mulandi builds software for places the network doesn't reach — offline-first platforms, edge infrastructure, and the systems that keep them running.";
 
 
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Aaron Mulandi",
+  url: siteUrl,
+  jobTitle: "Software Engineer",
+  description,
+  sameAs: [
+    "https://github.com/Arey-7",
+    "https://linkedin.com/in/aaron-mulandi",
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Jomo Kenyatta University of Agriculture and Technology",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "NJ",
+    addressCountry: "US",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -111,6 +134,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </a>
         </footer>
         <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </body>
     </html>
   );

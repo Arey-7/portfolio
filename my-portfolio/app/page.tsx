@@ -14,6 +14,8 @@ const SKILLS = [
   { group: "Hardware", items: ["Raspberry Pi", "Edge deployment", "GSM"] },
 ];
 
+export const metadata = { alternates: { canonical: "/" } };
+
 export default async function Home() {
   const projects = await getProjects();
 

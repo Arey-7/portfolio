@@ -4,6 +4,7 @@ import Markdown from "../components/markdown";
 import { getPage } from "../../lib/projects";
 
 export const metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description:
    "Get in touch with Aaron Mulandi — email, LinkedIn and GitHub. Based in New Jersey, authorized to work in the US.",
