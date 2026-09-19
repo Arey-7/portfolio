@@ -4,7 +4,7 @@ status: in-progress
 year: 2023
 summary: A pricing tool for a printing and graphic design company, built to cut the time between an enquiry and a quote.
 stack: [Next.js, React, Formik, Tailwind CSS]
-repo: https://github.com/Arey-7/nn-web
+repo: https://github.com/Arey-7/nn-web/tree/main/app/quote-calculator
 ---
 
 ## The problem
