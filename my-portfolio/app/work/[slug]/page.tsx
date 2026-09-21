@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Section from "../../components/section";
 import Chip from "../../components/chip";
+import StatusPill from "../../components/status-pill";
 import Markdown from "../../components/markdown";
 import EduAccessDiagram from "../../components/diagrams/eduaccess";
 import { getProject, getProjects } from "../../../lib/projects";
@@ -9,12 +10,6 @@ import { getProject, getProjects } from "../../../lib/projects";
 /** A project declares its diagram in frontmatter; the page looks it up here. */
 const DIAGRAMS: Record<string, () => React.ReactElement> = {
   eduaccess: EduAccessDiagram,
-};
-
-const STATUS_LABELS: Record<string, string> = {
- "in-progress": "In development",
-  live: "Live",
-  shipped: "Shipped",
 };
 
 /** One static page per content file — no route list to maintain. */
@@ -46,15 +41,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
   return (
     <main className="flex-1">
       <Section>
-        <p className="flex flex-wrap items-center gap-2 font-mono text-label uppercase">
-          <span className="text-amber">
-            {STATUS_LABELS[project.status] ?? project.status}
-          </span>
-          <span aria-hidden="true" className="text-line">
-            ·
-          </span>
-          <span className="text-muted">{project.year}</span>
-        </p>
+        <StatusPill status={project.status} year={project.year} />
 
         <h1 className="mt-4 font-display text-h2 text-ink">{project.title}</h1>
         <p className="mt-6 text-body text-muted">{project.summary}</p>
@@ -89,7 +76,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
                 href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
               >
                 Repository
               </a>
@@ -99,7 +86,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+                className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
               >
                 Live demo
               </a>
@@ -125,7 +112,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
           {previous ? (
             <Link
               href={`/work/${previous.slug}`}
-              className="inline-flex min-h-11 items-center text-muted transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+              className="inline-flex min-h-11 items-center text-muted transition-colors duration-180 hover:text-amber focus-ring"
             >
               ← {previous.title}
             </Link>
@@ -135,7 +122,7 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
           {next && (
             <Link
               href={`/work/${next.slug}`}
-              className="inline-flex min-h-11 items-center text-right text-muted transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+              className="inline-flex min-h-11 items-center text-right text-muted transition-colors duration-180 hover:text-amber focus-ring"
             >
               {next.title} →
             </Link>

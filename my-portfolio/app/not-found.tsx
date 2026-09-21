@@ -17,13 +17,13 @@ export default function NotFound() {
         <p className="mt-10 flex flex-wrap gap-6 font-mono text-label uppercase">
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
           >
             Home
           </Link>
           <Link
             href="/work"
-            className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
           >
             The work
           </Link>

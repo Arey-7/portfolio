@@ -85,25 +85,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <nav className="mx-auto flex w-full max-w-shell gap-6 px-5 py-6 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             Home
           </Link>
           <Link
             href="/work"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             Work
           </Link>
           <Link
             href="/about"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             About
           </Link>
           <Link
             href="/contact"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             Contact
           </Link>
@@ -112,7 +112,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <footer className="mx-auto flex w-full max-w-shell flex-wrap gap-6 border-t border-line px-5 py-10 font-mono text-label uppercase text-muted sm:px-8 lg:px-12">
           <a
             href="mailto:aaronmulandi@gmail.com"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             Email
           </a>
@@ -120,7 +120,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             href="https://github.com/Arey-7"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             GitHub
           </a>
@@ -128,7 +128,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             href="https://linkedin.com/in/aaron-mulandi"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
           >
             LinkedIn
           </a>

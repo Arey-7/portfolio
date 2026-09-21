@@ -59,7 +59,7 @@ export default async function ContactPage() {
                   {...(external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="inline-flex min-h-11 items-center text-body text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
+                  className="inline-flex min-h-11 items-center text-body text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
                 >
                   {value}
                 </a>

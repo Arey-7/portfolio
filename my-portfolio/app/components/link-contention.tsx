@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Button from "./button";
 
 /**
  * Signature element: what a shared uplink does to four clients when one of
@@ -97,14 +98,13 @@ export default function LinkContention() {
         <span className="font-mono text-label uppercase text-muted">
           Link contention — one shared uplink
         </span>
-        <button
+        <Button
           type="button"
           onClick={() => setIsShaped((v) => !v)}
           aria-pressed={isShaped}
-          className="min-h-11 rounded-full border border-muted px-4 font-mono text-label uppercase text-ink transition-colors duration-180 hover:border-amber hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
         >
           {isShaped ? "Fair queueing: on" : "Fair queueing: off"}
-        </button>
+        </Button>
       </figcaption>
 
       <ul className="mt-6 flex flex-col gap-4">

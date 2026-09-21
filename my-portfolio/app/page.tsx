@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Section from "./components/section";
+import Button from "./components/button";
 import ProjectCard from "./components/project-card";
 import LinkContention from "./components/link-contention";
 import { getProjects } from "../lib/projects";
@@ -39,18 +39,10 @@ export default async function Home() {
           Engineers Board of Kenya award, 2026
         </p>
         <p className="mt-10 flex flex-wrap gap-4">
-          <Link
-            href="/work/eduaccess"
-            className="min-h-11 rounded-full bg-amber px-6 py-3 font-mono text-label uppercase text-ground transition-colors duration-180 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
-          >
+          <Button href="/work/eduaccess" variant="primary">
             See the work
-          </Link>
-          <Link
-            href="/contact"
-            className="min-h-11 rounded-full border border-muted px-6 py-3 font-mono text-label uppercase text-ink transition-colors duration-180 hover:border-amber hover:text-amber focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link"
-          >
-            Get in touch
-          </Link>
+          </Button>
+          <Button href="/contact">Get in touch</Button>
         </p>
       </Section>
 

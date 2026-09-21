@@ -57,6 +57,13 @@ body {
   font-family: var(--font-sans);
 }
 
+/* The design doc's focus ring: 2px solid link, 3px offset, no transition.
+   Declared once — it was copy-pasted into 19 class strings. */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 3px;
+}
+
 /* Scroll reveal — the design doc's spec: opacity 0->1, translateY 14px->0.
    Driven by the scroll timeline rather than JavaScript, so it costs no bundle
    and no layout shift. Browsers without view() support simply show the content,
