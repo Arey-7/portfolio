@@ -29,6 +29,12 @@ const CHANNELS = [
     href: "https://github.com/Arey-7",
     external: true,
   },
+  {
+    label: "Résumé",
+    value: "aaron-mulandi-resume.pdf",
+    href: "/aaron-mulandi-resume.pdf",
+    external: true,
+  },
 ];
 
 export default async function ContactPage() {

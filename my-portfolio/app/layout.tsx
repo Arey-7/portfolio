@@ -132,6 +132,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             LinkedIn
           </a>
+          <a
+            href="/aaron-mulandi-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center transition-colors duration-180 hover:text-amber focus-ring"
+          >
+            Résumé
+          </a>
         </footer>
         <Analytics />
         <script
