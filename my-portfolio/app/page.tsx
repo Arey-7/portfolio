@@ -9,7 +9,10 @@ const SKILLS = [
     group: "Systems",
     items: ["Linux", "Networking", "Linux tc (HTB/SFQ)", "MikroTik RouterOS"],
   },
-  { group: "Backend", items: ["Python", "Flask", "REST APIs", "SQL"] },
+  {
+    group: "Backend",
+    items: ["Python", "Flask", "REST APIs", "OAuth 2.0", "Webhooks", "SQL"],
+  },
   { group: "Frontend", items: ["TypeScript", "React", "Next.js", "Tailwind"] },
   { group: "Hardware", items: ["Raspberry Pi", "Edge deployment", "GSM"] },
 ];
