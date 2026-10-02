@@ -14,13 +14,33 @@
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
 const NOW_PLAYING_URL =
   "https://api.spotify.com/v1/me/player/currently-playing";
+const RECENTLY_PLAYED_URL =
+  "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
 type Payload = {
+  /** True only while a track is actually playing. The widget labels itself
+   *  "Now playing" or "Last played" from this — claiming something is playing
+   *  when it stopped an hour ago would be a small lie the page tells. */
   isPlaying: boolean;
   title?: string;
   artist?: string;
   url?: string;
 };
+
+type SpotifyTrack = {
+  name?: string;
+  external_urls?: { spotify?: string };
+  artists?: { name?: string }[];
+};
+
+function toPayload(track: SpotifyTrack, isPlaying: boolean): Payload {
+  return {
+    isPlaying,
+    title: track.name,
+    artist: (track.artists ?? []).map((a) => a.name).filter(Boolean).join(", "),
+    url: track.external_urls?.spotify,
+  };
+}
 
 const SILENT: Payload = { isPlaying: false };
 
@@ -53,35 +73,41 @@ export async function GET() {
     const token = await accessToken();
     if (!token) return Response.json(SILENT);
 
-    const res = await fetch(NOW_PLAYING_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store",
-    });
+    const auth = { Authorization: `Bearer ${token}` };
 
-    // 204 = nothing playing. 429 = rate limited. Both are silence, not errors.
-    if (res.status !== 200) return Response.json(SILENT);
+    const res = await fetch(NOW_PLAYING_URL, { headers: auth, cache: "no-store" });
 
-    const song = (await res.json()) as {
-      is_playing?: boolean;
-      item?: {
-        name?: string;
-        external_urls?: { spotify?: string };
-        artists?: { name?: string }[];
+    let payload: Payload | null = null;
+
+    // 200 with a playing item is the live case. 204 means nothing is playing;
+    // 429 means rate limited. Neither is an error — both fall through.
+    if (res.status === 200) {
+      const song = (await res.json()) as {
+        is_playing?: boolean;
+        item?: SpotifyTrack;
       };
-    };
+      if (song.is_playing && song.item) payload = toPayload(song.item, true);
+    }
 
-    if (!song.is_playing || !song.item) return Response.json(SILENT);
+    // Nothing playing — fall back to whatever finished last.
+    if (!payload) {
+      const recent = await fetch(RECENTLY_PLAYED_URL, {
+        headers: auth,
+        cache: "no-store",
+      });
+      if (recent.status === 200) {
+        const history = (await recent.json()) as {
+          items?: { track?: SpotifyTrack }[];
+        };
+        const track = history.items?.[0]?.track;
+        if (track) payload = toPayload(track, false);
+      }
+    }
+
+    if (!payload) return Response.json(SILENT);
 
     return Response.json(
-      {
-        isPlaying: true,
-        title: song.item.name,
-        artist: (song.item.artists ?? [])
-          .map((a) => a.name)
-          .filter(Boolean)
-          .join(", "),
-        url: song.item.external_urls?.spotify,
-      } satisfies Payload,
+      payload,
       // Short cache: fresh enough to feel live, infrequent enough to stay well
       // inside Spotify's rate limit no matter how many people are reading.
       { headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60" } },

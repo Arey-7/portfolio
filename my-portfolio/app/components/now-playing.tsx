@@ -32,7 +32,7 @@ export default function NowPlaying() {
         const res = await fetch("/api/now-playing");
         if (!res.ok) return;
         const data: NowPlaying = await res.json();
-        if (!cancelled) setTrack(data.isPlaying ? data : null);
+        if (!cancelled) setTrack(data.title ? data : null);
       } catch {
         // Offline or blocked — leave the last state alone rather than flicker.
       }
@@ -46,11 +46,13 @@ export default function NowPlaying() {
     };
   }, []);
 
-  if (!track?.isPlaying || dismissed) return null;
+  if (!track?.title || dismissed) return null;
 
   return (
     <aside
-      aria-label="Currently playing on Spotify"
+      aria-label={
+        track.isPlaying ? "Currently playing on Spotify" : "Last played on Spotify"
+      }
       className="fixed bottom-6 left-6 z-50 hidden max-w-xs items-center gap-4 rounded-lg border border-muted bg-panel p-4 shadow-lg sm:flex"
     >
       {/* Three bars reading like a level meter — the instrument idea, applied
@@ -59,7 +61,9 @@ export default function NowPlaying() {
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="w-1 animate-pulse rounded-full bg-amber"
+            className={`w-1 rounded-full ${
+              track.isPlaying ? "animate-pulse bg-amber" : "bg-muted"
+            }`}
             style={{
               height: `${[10, 16, 7][i]}px`,
               animationDelay: `${i * 180}ms`,
@@ -70,7 +74,7 @@ export default function NowPlaying() {
 
       <span className="min-w-0">
         <span className="block font-mono text-label uppercase text-muted">
-          Now playing
+          {track.isPlaying ? "Now playing" : "Last played"}
         </span>
         <a
           href={track.url}
@@ -88,7 +92,7 @@ export default function NowPlaying() {
       <button
         type="button"
         onClick={() => setDismissed(true)}
-        aria-label="Hide now playing"
+        aria-label="Hide Spotify readout"
         className="ml-2 shrink-0 self-start font-mono text-label text-muted transition-colors duration-180 hover:text-amber focus-ring"
       >
         ×
