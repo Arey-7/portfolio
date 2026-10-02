@@ -79,17 +79,19 @@ export async function GET() {
 
     let payload: Payload | null = null;
 
-    // 200 with a playing item is the live case. 204 means nothing is playing;
-    // 429 means rate limited. Neither is an error — both fall through.
+    // A 200 carries the track the player holds, playing or paused — a paused
+    // track still answers "what were you last listening to" better than history
+    // does, because the history endpoint only lists tracks that finished.
+    // 204 means no active session; 429 means rate limited. Both fall through.
     if (res.status === 200) {
       const song = (await res.json()) as {
         is_playing?: boolean;
         item?: SpotifyTrack;
       };
-      if (song.is_playing && song.item) payload = toPayload(song.item, true);
+      if (song.item) payload = toPayload(song.item, song.is_playing === true);
     }
 
-    // Nothing playing — fall back to whatever finished last.
+    // No player session at all — fall back to whatever finished last.
     if (!payload) {
       const recent = await fetch(RECENTLY_PLAYED_URL, {
         headers: auth,
