@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
  * A floating readout of what's playing on Spotify.
  *
  * Renders nothing at all when nothing is playing or the API is unreachable, so
- * it can only ever add to the page, never break it. Hidden below the lg
- * breakpoint: on a phone a fixed overlay competes with the content for a screen
- * that hasn't got room to spare.
+ * it can only ever add to the page, never break it. Hidden below the sm
+ * breakpoint only: on a phone a fixed overlay competes with content for a screen
+ * that has no room to spare, but anything laptop-sized can show it.
  */
 
 type NowPlaying = {
@@ -51,7 +51,7 @@ export default function NowPlaying() {
   return (
     <aside
       aria-label="Currently playing on Spotify"
-      className="fixed bottom-6 left-6 z-50 hidden max-w-xs items-center gap-4 rounded-lg border border-muted bg-panel p-4 shadow-lg lg:flex"
+      className="fixed bottom-6 left-6 z-50 hidden max-w-xs items-center gap-4 rounded-lg border border-muted bg-panel p-4 shadow-lg sm:flex"
     >
       {/* Three bars reading like a level meter — the instrument idea, applied
           to something that is genuinely changing. */}
