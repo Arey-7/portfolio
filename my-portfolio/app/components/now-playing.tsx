@@ -73,11 +73,12 @@ export default function NowPlaying() {
       aria-label={
         track.isPlaying ? "Currently playing on Spotify" : "Last played on Spotify"
       }
-      className="fixed bottom-6 left-6 z-50 hidden max-w-xs items-center gap-4 rounded-lg border border-muted bg-panel p-4 shadow-lg sm:flex"
+      className="group fixed bottom-6 left-6 z-50 hidden items-center gap-3 rounded-full border border-muted bg-panel p-3 shadow-lg transition-[border-radius] duration-180 focus-within:rounded-lg hover:rounded-lg sm:flex"
     >
-      {/* Three bars reading like a level meter — the instrument idea, applied
-          to something that is genuinely changing. */}
-      <span aria-hidden="true" className="flex items-end gap-1">
+      {/* Collapsed, this is ~52px wide and sits clear of the content column.
+          The track details expand on hover or keyboard focus, so the card can
+          never sit on top of the page's own text unasked. */}
+      <span aria-hidden="true" className="flex items-end gap-1 px-1">
         {[0, 1, 2].map((i) => (
           <span
             key={i}
@@ -92,19 +93,19 @@ export default function NowPlaying() {
         ))}
       </span>
 
-      <span className="min-w-0">
-        <span className="block font-mono text-label uppercase text-muted">
+      <span className="grid max-w-0 grid-cols-[auto] overflow-hidden opacity-0 transition-all duration-180 group-focus-within:max-w-[16rem] group-focus-within:opacity-100 group-hover:max-w-[16rem] group-hover:opacity-100">
+        <span className="block whitespace-nowrap font-mono text-label uppercase text-muted">
           {track.isPlaying ? "Now playing" : "Last played"}
         </span>
         <a
           href={track.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="block truncate text-body text-ink transition-colors duration-180 hover:text-amber focus-ring"
+          className="block truncate pr-2 text-body text-ink transition-colors duration-180 hover:text-amber focus-ring"
         >
           {track.title}
         </a>
-        <span className="block truncate font-mono text-label text-muted">
+        <span className="block truncate pr-2 font-mono text-label text-muted">
           {track.artist}
         </span>
       </span>
@@ -113,7 +114,7 @@ export default function NowPlaying() {
         type="button"
         onClick={() => setDismissed(true)}
         aria-label="Hide Spotify readout"
-        className="ml-2 shrink-0 self-start font-mono text-label text-muted transition-colors duration-180 hover:text-amber focus-ring"
+        className="max-w-0 overflow-hidden self-start font-mono text-label text-muted opacity-0 transition-all duration-180 hover:text-amber focus-ring group-focus-within:max-w-4 group-focus-within:opacity-100 group-hover:max-w-4 group-hover:opacity-100"
       >
         ×
       </button>
