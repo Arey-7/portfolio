@@ -98,6 +98,10 @@ export default function LinkContention() {
         <span className="font-mono text-label uppercase text-muted">
           Link contention — one shared uplink
         </span>
+        <span className="flex items-center gap-3">
+        <span aria-hidden="true" className="font-mono text-label uppercase text-amber">
+          Try it
+        </span>
         <Button
           type="button"
           onClick={() => setIsShaped((v) => !v)}
@@ -105,6 +109,7 @@ export default function LinkContention() {
         >
           {isShaped ? "Fair queueing: on" : "Fair queueing: off"}
         </Button>
+        </span>
       </figcaption>
 
       <ul className="mt-6 flex flex-col gap-4">

@@ -29,20 +29,20 @@ export default async function Home() {
         <p className="font-mono text-label uppercase text-amber">
           Software engineer
         </p>
-        <h1 className="mt-4 font-display text-display text-ink">
+        <h1 className="mt-3 font-display text-display text-ink">
           Aaron Mulandi
         </h1>
-        <p className="mt-6 text-body text-muted">
+        <p className="mt-4 text-body text-muted">
           I build systems that hold up when the infrastructure doesn&rsquo;t —
           offline-first platforms, edge deployments, and the backends behind
           them.
         </p>
-        <p className="mt-4 font-mono text-label uppercase text-muted">
+        <p className="mt-3 font-mono text-label uppercase text-muted">
           Electronic &amp; Computer Engineering, JKUAT
           <span className="text-line"> · </span>
           Engineers Board of Kenya award, 2026
         </p>
-        <p className="mt-10 flex flex-wrap gap-4">
+        <p className="mt-6 flex flex-wrap gap-4">
           <Button href="/work/eduaccess" variant="primary">
             See the work
           </Button>
@@ -54,7 +54,7 @@ export default async function Home() {
         <h2 data-reveal className="font-display text-h2 text-ink">
           What a shared uplink does to a classroom
         </h2>
-        <p data-reveal className="mt-6 text-body text-muted">
+        <p data-reveal className="mt-4 text-body text-muted">
           Four devices, one link, and one of them streaming video. Without fair
           queueing the stream takes what it asks for and the payment request at
           the bottom gets nothing — so a student who just paid can&rsquo;t
@@ -68,7 +68,7 @@ export default async function Home() {
           </Link>
           , not a measurement of it.
         </p>
-        <div className="mt-10">
+        <div className="mt-6">
           <LinkContention />
         </div>
       </Section>

@@ -14,7 +14,7 @@ type SectionProps = {
 export default function Section({ children, className = "" }: SectionProps) {
   return (
     <section
-      className={`mx-auto w-full max-w-shell px-5 py-10 sm:px-8 lg:px-12 lg:py-14 ${className}`}
+      className={`mx-auto w-full max-w-shell px-5 py-8 sm:px-8 lg:px-12 lg:py-10 ${className}`}
     >
       {children}
     </section>
