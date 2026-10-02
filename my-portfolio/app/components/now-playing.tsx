@@ -26,6 +26,7 @@ export default function NowPlaying() {
 
   useEffect(() => {
     let cancelled = false;
+    let timer: ReturnType<typeof setInterval> | null = null;
 
     const load = async () => {
       try {
@@ -38,11 +39,30 @@ export default function NowPlaying() {
       }
     };
 
-    load();
-    const id = setInterval(load, POLL_MS);
+    const stop = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+
+    // Polling a hidden tab asks Spotify about a card nobody is looking at, so
+    // it stops on blur and resumes — with an immediate fetch, since the track
+    // has probably changed — when the page is looked at again.
+    const start = () => {
+      if (timer) return;
+      load();
+      timer = setInterval(load, POLL_MS);
+    };
+
+    const onVisibility = () =>
+      document.visibilityState === "visible" ? start() : stop();
+
+    onVisibility();
+    document.addEventListener("visibilitychange", onVisibility);
+
     return () => {
       cancelled = true;
-      clearInterval(id);
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
