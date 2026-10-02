@@ -4,6 +4,7 @@ import Section from "../../components/section";
 import Chip from "../../components/chip";
 import StatusPill from "../../components/status-pill";
 import Markdown from "../../components/markdown";
+import TableOfContents from "../../components/table-of-contents";
 import EduAccessDiagram from "../../components/diagrams/eduaccess";
 import { getProject, getProjects } from "../../../lib/projects";
 
@@ -100,6 +101,8 @@ export default async function WorkPage({ params }: PageProps<"/work/[slug]">) {
               return <Diagram />;
             })()
           : null}
+
+        <TableOfContents headings={project.headings} />
 
         <div className="mt-16">
           <Markdown>{project.body}</Markdown>

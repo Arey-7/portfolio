@@ -1,14 +1,25 @@
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { slugify } from "../../lib/slug";
 
 /**
  * Markdown rendered straight to React elements — no dangerouslySetInnerHTML,
  * and every element mapped onto a design token so prose can't drift away from
  * the rest of the site.
  */
+/** Headings arrive as a string, or as nodes when they contain inline markup. */
+function textOf(children: React.ReactNode): string {
+  if (typeof children === "string") return children;
+  if (Array.isArray(children)) return children.map(textOf).join("");
+  return "";
+}
+
 const components: Components = {
   h2: ({ children }) => (
-    <h2 className="mt-16 font-display text-h2 text-ink first:mt-0">
+    <h2
+      id={slugify(textOf(children))}
+      className="mt-16 scroll-mt-8 font-display text-h2 text-ink first:mt-0"
+    >
       {children}
     </h2>
   ),

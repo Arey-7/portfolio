@@ -1,5 +1,6 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { slugify } from "./slug";
 
 export type Project = {
   slug: string;
@@ -15,6 +16,8 @@ export type Project = {
   demo?: string;
   /** Key into the diagram registry on the project page. */
   diagram?: string;
+  /** Top-level sections of the body, for the table of contents. */
+  headings: { text: string; slug: string }[];
   body: string;
 };
 
@@ -81,6 +84,10 @@ export async function getProjects(): Promise<Project[]> {
         repo: str(data.repo) || undefined,
         demo: str(data.demo) || undefined,
         body,
+        headings: [...body.matchAll(/^## +(.+)$/gm)].map((m) => ({
+          text: m[1].trim(),
+          slug: slugify(m[1].trim()),
+        })),
       };
       return project;
     }),
