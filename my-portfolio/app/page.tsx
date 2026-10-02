@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Section from "./components/section";
 import Button from "./components/button";
 import ProjectCard from "./components/project-card";
@@ -50,7 +51,26 @@ export default async function Home() {
       </Section>
 
       <Section>
-        <LinkContention />
+        <h2 data-reveal className="font-display text-h2 text-ink">
+          What a shared uplink does to a classroom
+        </h2>
+        <p data-reveal className="mt-6 text-body text-muted">
+          Four devices, one link, and one of them streaming video. Without fair
+          queueing the stream takes what it asks for and the payment request at
+          the bottom gets nothing — so a student who just paid can&rsquo;t
+          finish paying. Toggle it to see what HTB and SFQ do about that. This
+          is a simulation of the scheme designed for{" "}
+          <Link
+            href="/work/eduaccess"
+            className="text-link underline underline-offset-4 transition-colors duration-180 hover:text-amber focus-ring"
+          >
+            EduAccess
+          </Link>
+          , not a measurement of it.
+        </p>
+        <div className="mt-10">
+          <LinkContention />
+        </div>
       </Section>
 
       <Section>
