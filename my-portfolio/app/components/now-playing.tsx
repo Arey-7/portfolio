@@ -78,7 +78,7 @@ export default function NowPlaying() {
         onClick={() => setMinimised(false)}
         aria-label="Show what I'm listening to"
         title="Show what I'm listening to"
-        className="fixed bottom-6 left-6 z-50 hidden size-10 items-center justify-center rounded-full border border-line bg-panel opacity-60 transition-opacity duration-180 hover:opacity-100 focus-ring sm:flex"
+        className="fixed bottom-6 left-6 z-50 hidden items-center gap-3 rounded-full border border-muted bg-panel p-3 shadow-lg transition-colors duration-180 hover:border-amber focus-ring sm:flex"
       >
         <span aria-hidden="true" className="flex items-end gap-1 px-1">
           {[0, 1, 2].map((i) => (
