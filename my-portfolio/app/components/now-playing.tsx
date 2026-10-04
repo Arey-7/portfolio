@@ -20,6 +20,32 @@ type NowPlaying = {
 
 const POLL_MS = 30_000;
 
+/** Geometry shared by both states, so collapsed and minimised are the same
+ *  object in the same place at the same size — not two things that happen to
+ *  look alike until one of them is edited. */
+const BADGE =
+  "fixed bottom-6 left-6 z-50 hidden h-11 min-w-11 items-center justify-center " +
+  "rounded-full border border-muted bg-panel px-3 shadow-lg sm:flex";
+
+function Bars({ playing }: { playing: boolean }) {
+  return (
+    <span aria-hidden="true" className="flex shrink-0 items-end gap-1">
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className={`w-1 rounded-full ${
+            playing ? "animate-pulse bg-amber" : "bg-muted"
+          }`}
+          style={{
+            height: `${[10, 16, 7][i]}px`,
+            animationDelay: `${i * 180}ms`,
+          }}
+        />
+      ))}
+    </span>
+  );
+}
+
 export default function NowPlaying() {
   const [track, setTrack] = useState<NowPlaying | null>(null);
   const [minimised, setMinimised] = useState(false);
@@ -78,22 +104,9 @@ export default function NowPlaying() {
         onClick={() => setMinimised(false)}
         aria-label="Show what I'm listening to"
         title="Show what I'm listening to"
-        className="fixed bottom-6 left-6 z-50 hidden size-11 items-center justify-center rounded-full border border-muted bg-panel shadow-lg transition-colors duration-180 hover:border-amber focus-ring sm:flex"
+        className={`${BADGE} transition-colors duration-180 hover:border-amber focus-ring`}
       >
-        <span aria-hidden="true" className="flex shrink-0 items-end gap-1">
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className={`w-1 rounded-full ${
-                track.isPlaying ? "animate-pulse bg-amber" : "bg-muted"
-              }`}
-              style={{
-                height: `${[10, 16, 7][i]}px`,
-                animationDelay: `${i * 180}ms`,
-              }}
-            />
-          ))}
-        </span>
+        <Bars playing={track.isPlaying} />
       </button>
     );
   }
@@ -103,25 +116,12 @@ export default function NowPlaying() {
       aria-label={
         track.isPlaying ? "Currently playing on Spotify" : "Last played on Spotify"
       }
-      className="group fixed bottom-6 left-6 z-50 hidden h-11 min-w-11 items-center justify-center gap-0 rounded-full border border-muted bg-panel px-3 shadow-lg transition-all duration-180 focus-within:gap-3 focus-within:rounded-lg hover:gap-3 hover:rounded-lg sm:flex"
+      className={`group ${BADGE} gap-0 transition-all duration-180 focus-within:gap-3 focus-within:rounded-lg hover:gap-3 hover:rounded-lg`}
     >
       {/* Collapsed, this is ~52px wide and sits clear of the content column.
           The track details expand on hover or keyboard focus, so the card can
           never sit on top of the page's own text unasked. */}
-      <span aria-hidden="true" className="flex shrink-0 items-end gap-1">
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            className={`w-1 rounded-full ${
-              track.isPlaying ? "animate-pulse bg-amber" : "bg-muted"
-            }`}
-            style={{
-              height: `${[10, 16, 7][i]}px`,
-              animationDelay: `${i * 180}ms`,
-            }}
-          />
-        ))}
-      </span>
+      <Bars playing={track.isPlaying} />
 
       <span className="grid max-w-0 grid-cols-[auto] overflow-hidden opacity-0 transition-all duration-180 group-focus-within:max-w-[16rem] group-focus-within:opacity-100 group-hover:max-w-[16rem] group-hover:opacity-100">
         <span className="block whitespace-nowrap font-mono text-label uppercase text-muted">
