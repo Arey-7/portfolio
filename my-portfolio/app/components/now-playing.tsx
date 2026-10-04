@@ -78,9 +78,9 @@ export default function NowPlaying() {
         onClick={() => setMinimised(false)}
         aria-label="Show what I'm listening to"
         title="Show what I'm listening to"
-        className="fixed bottom-6 left-6 z-50 hidden items-center gap-3 rounded-full border border-muted bg-panel p-3 shadow-lg transition-colors duration-180 hover:border-amber focus-ring sm:flex"
+        className="fixed bottom-6 left-6 z-50 hidden size-11 items-center justify-center rounded-full border border-muted bg-panel shadow-lg transition-colors duration-180 hover:border-amber focus-ring sm:flex"
       >
-        <span aria-hidden="true" className="flex items-end gap-1 px-1">
+        <span aria-hidden="true" className="flex shrink-0 items-end gap-1">
           {[0, 1, 2].map((i) => (
             <span
               key={i}
@@ -103,12 +103,12 @@ export default function NowPlaying() {
       aria-label={
         track.isPlaying ? "Currently playing on Spotify" : "Last played on Spotify"
       }
-      className="group fixed bottom-6 left-6 z-50 hidden items-center gap-3 rounded-full border border-muted bg-panel p-3 shadow-lg transition-[border-radius] duration-180 focus-within:rounded-lg hover:rounded-lg sm:flex"
+      className="group fixed bottom-6 left-6 z-50 hidden h-11 min-w-11 items-center justify-center gap-0 rounded-full border border-muted bg-panel px-3 shadow-lg transition-all duration-180 focus-within:gap-3 focus-within:rounded-lg hover:gap-3 hover:rounded-lg sm:flex"
     >
       {/* Collapsed, this is ~52px wide and sits clear of the content column.
           The track details expand on hover or keyboard focus, so the card can
           never sit on top of the page's own text unasked. */}
-      <span aria-hidden="true" className="flex items-end gap-1 px-1">
+      <span aria-hidden="true" className="flex shrink-0 items-end gap-1">
         {[0, 1, 2].map((i) => (
           <span
             key={i}
