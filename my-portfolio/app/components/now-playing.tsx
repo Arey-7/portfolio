@@ -20,11 +20,10 @@ type NowPlaying = {
 
 const POLL_MS = 30_000;
 
-/** Geometry shared by both states, so collapsed and minimised are the same
- *  object in the same place at the same size — not two things that happen to
- *  look alike until one of them is edited. */
+/** The badge's geometry, defined once. Collapsed it is a 44px circle; the
+ *  expanded card grows from it rather than replacing it. */
 const BADGE =
-  "fixed bottom-6 left-6 z-50 hidden h-11 min-w-11 items-center justify-center " +
+  "fixed bottom-6 left-6 z-50 hidden min-h-11 min-w-11 items-center justify-center " +
   "rounded-full border border-muted bg-panel px-3 shadow-lg sm:flex";
 
 function Bars({ playing }: { playing: boolean }) {
@@ -48,7 +47,6 @@ function Bars({ playing }: { playing: boolean }) {
 
 export default function NowPlaying() {
   const [track, setTrack] = useState<NowPlaying | null>(null);
-  const [minimised, setMinimised] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -94,23 +92,6 @@ export default function NowPlaying() {
 
   if (!track?.title) return null;
 
-  // Minimised: a small button that restores the card. Hiding it outright would
-  // be a one-way door — nothing on the page could bring it back short of a
-  // reload, which nobody would guess at.
-  if (minimised) {
-    return (
-      <button
-        type="button"
-        onClick={() => setMinimised(false)}
-        aria-label="Show what I'm listening to"
-        title="Show what I'm listening to"
-        className={`${BADGE} transition-colors duration-180 hover:border-amber focus-ring`}
-      >
-        <Bars playing={track.isPlaying} />
-      </button>
-    );
-  }
-
   return (
     <aside
       aria-label={
@@ -123,7 +104,7 @@ export default function NowPlaying() {
           never sit on top of the page's own text unasked. */}
       <Bars playing={track.isPlaying} />
 
-      <span className="grid max-w-0 grid-cols-[auto] overflow-hidden opacity-0 transition-all duration-180 group-focus-within:max-w-[16rem] group-focus-within:opacity-100 group-hover:max-w-[16rem] group-hover:opacity-100">
+      <span className="grid max-w-0 grid-cols-[auto] overflow-hidden py-1 opacity-0 transition-all duration-180 group-focus-within:max-w-[17rem] group-focus-within:opacity-100 group-hover:max-w-[17rem] group-hover:opacity-100">
         <span className="block whitespace-nowrap font-mono text-label uppercase text-muted">
           {track.isPlaying ? "Now playing" : "Last played"}
         </span>
@@ -131,24 +112,15 @@ export default function NowPlaying() {
           href={track.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="block truncate pr-2 text-body text-ink transition-colors duration-180 hover:text-amber focus-ring"
+          className="block pr-1 text-body leading-tight text-ink transition-colors duration-180 hover:text-amber focus-ring"
         >
           {track.title}
         </a>
-        <span className="block truncate pr-2 font-mono text-label text-muted">
+        <span className="block pr-1 font-mono text-label text-muted">
           {track.artist}
         </span>
       </span>
 
-      <button
-        type="button"
-        onClick={() => setMinimised(true)}
-        aria-label="Minimise Spotify readout"
-        title="Minimise"
-        className="max-w-0 overflow-hidden self-start font-mono text-label text-muted opacity-0 transition-all duration-180 hover:text-amber focus-ring group-focus-within:max-w-4 group-focus-within:opacity-100 group-hover:max-w-4 group-hover:opacity-100"
-      >
-        &minus;
-      </button>
     </aside>
   );
 }
