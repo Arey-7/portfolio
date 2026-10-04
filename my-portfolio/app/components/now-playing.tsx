@@ -22,7 +22,7 @@ const POLL_MS = 30_000;
 
 export default function NowPlaying() {
   const [track, setTrack] = useState<NowPlaying | null>(null);
-  const [dismissed, setDismissed] = useState(false);
+  const [minimised, setMinimised] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -66,7 +66,37 @@ export default function NowPlaying() {
     };
   }, []);
 
-  if (!track?.title || dismissed) return null;
+  if (!track?.title) return null;
+
+  // Minimised: a small button that restores the card. Hiding it outright would
+  // be a one-way door — nothing on the page could bring it back short of a
+  // reload, which nobody would guess at.
+  if (minimised) {
+    return (
+      <button
+        type="button"
+        onClick={() => setMinimised(false)}
+        aria-label="Show what I'm listening to"
+        title="Show what I'm listening to"
+        className="fixed bottom-6 left-6 z-50 hidden size-10 items-center justify-center rounded-full border border-line bg-panel opacity-60 transition-opacity duration-180 hover:opacity-100 focus-ring sm:flex"
+      >
+        <span aria-hidden="true" className="flex items-end gap-1 px-1">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className={`w-1 rounded-full ${
+                track.isPlaying ? "animate-pulse bg-amber" : "bg-muted"
+              }`}
+              style={{
+                height: `${[10, 16, 7][i]}px`,
+                animationDelay: `${i * 180}ms`,
+              }}
+            />
+          ))}
+        </span>
+      </button>
+    );
+  }
 
   return (
     <aside
@@ -112,11 +142,12 @@ export default function NowPlaying() {
 
       <button
         type="button"
-        onClick={() => setDismissed(true)}
-        aria-label="Hide Spotify readout"
+        onClick={() => setMinimised(true)}
+        aria-label="Minimise Spotify readout"
+        title="Minimise"
         className="max-w-0 overflow-hidden self-start font-mono text-label text-muted opacity-0 transition-all duration-180 hover:text-amber focus-ring group-focus-within:max-w-4 group-focus-within:opacity-100 group-hover:max-w-4 group-hover:opacity-100"
       >
-        ×
+        &minus;
       </button>
     </aside>
   );
