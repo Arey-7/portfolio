@@ -97,14 +97,14 @@ export default function NowPlaying() {
       aria-label={
         track.isPlaying ? "Currently playing on Spotify" : "Last played on Spotify"
       }
-      className={`group ${BADGE} gap-0 transition-all duration-180 focus-within:gap-3 focus-within:rounded-lg focus-within:py-3 hover:gap-3 hover:rounded-lg hover:py-3`}
+      className={`group ${BADGE} gap-0 transition-[gap,padding,border-radius] duration-300 ease-out focus-within:gap-3 focus-within:rounded-lg focus-within:py-3 hover:gap-3 hover:rounded-lg hover:py-3`}
     >
       {/* Collapsed, this is ~52px wide and sits clear of the content column.
           The track details expand on hover or keyboard focus, so the card can
           never sit on top of the page's own text unasked. */}
       <Bars playing={track.isPlaying} />
 
-      <span className="grid max-h-0 max-w-0 grid-cols-[auto] overflow-hidden opacity-0 transition-all duration-180 group-focus-within:max-h-40 group-focus-within:max-w-[17rem] group-focus-within:opacity-100 group-hover:max-h-40 group-hover:max-w-[17rem] group-hover:opacity-100">
+      <span className="grid max-h-0 max-w-0 grid-cols-[auto] overflow-hidden opacity-0 transition-[max-width,max-height,opacity] duration-300 ease-out group-focus-within:max-h-24 group-focus-within:max-w-[17rem] group-focus-within:opacity-100 group-hover:max-h-24 group-hover:max-w-[17rem] group-hover:opacity-100">
         <span className="block whitespace-nowrap font-mono text-label uppercase text-muted">
           {track.isPlaying ? "Now playing" : "Last played"}
         </span>
